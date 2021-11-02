@@ -34,6 +34,14 @@ class Student:
             sum += grade;
         return sum / len(allGrades);
             
+
+
+
+
+
+
+
+
 x = Student("Name1", "Surname1", 12);
 y = Student("Name1", "Surname1", 23);
 z = Student("Name1", "Surname1", 34);
@@ -45,10 +53,13 @@ TV.addStudent(y);
 TV.addStudent(z);
 TV.addStudent(w);
 
-print(TV.students);
-
 TV.students[0].gradeSetter('Math', 60);
 TV.students[0].gradeSetter('Math', 100);
 TV.students[0].gradeSetter('Arts', 70);
 TV.students[0].gradeSetter('Arts', 90);
+TV.students[1].gradeSetter('Math', 35);
+TV.students[1].gradeSetter('Math', 61);
+TV.students[1].gradeSetter('Arts', 1);
+TV.students[1].gradeSetter('Arts', -2);
 print(x.averageGrades());
+print(y.averageGrades());
