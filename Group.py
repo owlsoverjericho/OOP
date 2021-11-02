@@ -7,16 +7,15 @@ class Group:
     def addStudent(self, Student):
         if Student not in self.students:
             self.students.append(Student);
-        else:
-            print("a student with this RBN already exists");
-    
-    
+
 class Student:
     def __init__(self, name, surname, RBN):
         self.name = name;
         self.surname = surname;
         self.RBN = RBN;
         self.classes = {};
+    def __eq__(self, other):
+        return self.RBN == other.RBN;
     def gradeSetter(self, subject, grade):
         if subject not in self.classes:
             self.classes[subject] = [];
@@ -39,11 +38,14 @@ x = Student("Name1", "Surname1", 12);
 y = Student("Name1", "Surname1", 23);
 z = Student("Name1", "Surname1", 34);
 w = Student("Name1", "Surname1", 45);
+a = Student("Name1", "Surname1", 45);
 TV = Group("TV-z01", "APEPS", "TEF");
 TV.addStudent(x);
 TV.addStudent(y);
 TV.addStudent(z);
 TV.addStudent(w);
+
+print(TV.students);
 
 TV.students[0].gradeSetter('Math', 60);
 TV.students[0].gradeSetter('Math', 100);
