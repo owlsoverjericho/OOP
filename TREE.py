@@ -1,25 +1,41 @@
-#Create a class BINARY TREE that contains background information of product prices (product code, price of 1 product). The tree is sorted by product codes. From the keyboard enter data on the number of products in the format: product code, number of products. Using a tree, find the cost of products (cost = quantity * price of one product).
-
-
-
 class Node:
-    def __init__(self, data):
-        self.data = data;
+    def __init__(self, code, price):
+        self.code = code;
+        self.price = price;
         self.left = None;
         self.right = None;
         
-        
-root = Node(1);
+root = Node(28, 101);
 
-root.left = Node(2);
-root.right = Node(3);
+root.left = Node(23, 102);
 
-def preorderT(node):
-        if node:
-            preorderT(node.left);
-            
-            preorderT(node.right);
-            
-            print(node.data);
-            
-preorderT(root);
+root.left.left = Node(14, 103);
+root.left.right = Node(24, 104);
+
+root.left.left.left = Node(12, 105);
+root.left.left.right = Node(17, 106);
+
+root.right = Node(33, 107);
+root.right.left = Node(32, 108);
+
+root.right.right = Node(59, 109);
+
+root.right.right.left = Node(54, 110);
+root.right.right.right = Node(72, 111);
+
+def preorderTraversal(node):
+    if node:
+        print(node.code);
+        preorderTraversal(node.left);
+        preorderTraversal(node.right);
+
+def search(tree, code):
+    if tree is not None and tree.code == code:
+        print(tree.price);
+    if code < tree.code:
+        return search(tree.left, code);
+    if code > tree.code:
+        return search(tree.right, code);
+    
+    
+search(root, 12)
