@@ -30,12 +30,14 @@ def preorderTraversal(node):
         preorderTraversal(node.right);
 
 def search(tree, code):
-    if tree is not None and tree.code == code:
-        print(tree.price);
-    if code < tree.code:
-        return search(tree.left, code);
-    if code > tree.code:
-        return search(tree.right, code);
+    if tree != None:
+        if tree.code == code:
+            return tree.price;
+        if code < tree.code:
+            return search(tree.left, code);
+        if code > tree.code:
+            return search(tree.right, code);
+    else:
+        return "Not found";
     
-    
-search(root, 12)
+print(search(root, 12));
