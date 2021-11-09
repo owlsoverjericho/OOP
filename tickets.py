@@ -7,3 +7,27 @@ All tickets must have the following properties:
 -the ability to construct a ticket by number;
 -the ability to ask for a ticket’s price;
 -the ability to print a ticket as a String.
+
+import random
+
+class Ticket:
+    def __init__(self, price, number):
+        self.price = price
+        self.number = number
+
+class ticketFactory:
+    def __init__(self):
+        self.numberPool = set()
+        self.ticketPool = []
+    def generateTickets(self, amount, price):
+        self.numberPool = [random.randint(100, 200) for _ in range(amount)]
+        for number in self.numberPool:
+            self.ticketPool.append(Ticket(price, number))
+            
+advanced_tickets = ticketFactory()
+advanced_tickets.generateTickets(50, 100)
+
+i = 0
+
+for index in range(50):
+    print(advanced_tickets.ticketPool[index].number)
