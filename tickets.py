@@ -1,12 +1,8 @@
-#Write a program for selling tickets to IT-events. Each ticket has a unique number and a price. There are four types of tickets: regular ticket, advance ticket (purchased 60 or more days before the event), late ticket (purchased fewer than 10 days before the event) and student ticket.
-#Additional information:
-#-advance ticket - discount 40% of the regular ticket price;
+#-advanced ticket - discount 40% of the regular ticket price;
 #-student ticket - discount 50% of the regular ticket price;
-#-late ticket - additional 10% to the reguler ticket price.
-#All tickets must have the following properties:
-#-the ability to construct a ticket by number;
-#-the ability to ask for a ticket’s price;
-#-the ability to print a ticket as a String.
+#-late ticket - additional 10% to the reguler ticket price
+
+import random
 
 class Ticket:
     def __init__(self, price, number):
@@ -50,7 +46,8 @@ x.generateStudent(10)
 
 x.generateAtTheDay(10)
 
-print("Regular ticket price:", x.regularPool[0].price)
-print("Advanced ticket price:", x.advancedPool[0].price)
-print("Student ticket price:", x.studentPool[0].price)
-print("At the day ticket price:", x.atTheDayPool[0].price)
+print(f"Regular ticket price: {x.regularPool[0].price}, tickets available {len(x.regularPool)}")
+
+print(f"Advanced ticket price: {x.advancedPool[0].price}, tickets available {len(x.advancedPool)}")
+print(f"Student ticket price: {x.studentPool[0].price}, tickets available {len(x.studentPool)}",)
+print(f"At the day ticket price: {x.atTheDayPool[0].price}, tickets available {len(x.atTheDayPool)}")
