@@ -1,4 +1,3 @@
-
 from math import gcd
 
 class Rational:
@@ -9,6 +8,14 @@ class Rational:
         print(f'{int(self.__numerator)}/{int(self.__denominator)}');
     def displayFloating(self):
         print(f'{self.__numerator / self.__denominator}');
+    def addition():
+        pass
+    def substraction():
+        pass
+    def multiplication():
+        pass
+    def division():
+        pass
 
 x = Rational(10,20);
 
