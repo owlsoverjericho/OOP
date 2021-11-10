@@ -52,13 +52,28 @@ def availableTickets(event):
     print(f"Regular tickets available: {len(event.regularTickets)}, price: {event.regular}")
     print(f"Student tickets available: {len(event.studentTickets)}, price: {event.student}")
     print(f"Advanced tickets available: {len(event.advancedTickets)}, price: {event.advanced}")
-    print(f"Late tickets available: {len(event.lateTickets)}, price: {event.late}")
+    print(f"Late tickets available: {len(event.lateTickets)}, price: {event.late}\n")
     
 def showMenu(event):
-    availableTickets(event)
-    print("\n1: Buy a regular ticket\n2: Buy a student ticket\n3: Buy an advanced ticket\n4: Buy a late ticket\n5: exit")
+    print("1: Buy a regular ticket\n2: Buy a student ticket\n3: Buy an advanced ticket\n4: Buy a late ticket\n5: exit")
+    choice = int(input("Enter an option number:"))
+    if choice == 1:
+        event.regularTickets.pop(0)
+        print("\nThanks for purchasing!\n")
+        availableTickets(event)
+        showMenu(event)
+    elif choice == 2:
+        pass
+    elif choice == 3:
+        pass
+    elif choice == 4:
+        pass
+    elif choice == 5:
+        pass
+    else:
+        pass
 while True:
     event = EventCreator(50, 100)
+    availableTickets(event)
     showMenu(event)
     break
-    
