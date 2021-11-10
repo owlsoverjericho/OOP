@@ -70,8 +70,7 @@ def showMenu(event):
             event.regularTickets.pop(0)
             print("\nThanks for purchasing!\n")
             availableTickets(event)
-            showMenu(event)
-            
+            showMenu(event) 
         else:
             clear()
             print("Sorry, we`re out of regular tickets\n")
