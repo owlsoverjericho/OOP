@@ -1,6 +1,5 @@
-#-advanced ticket - discount 40% of the regular ticket price;
-#-student ticket - discount 50% of the regular ticket price;
-#-late ticket - additional 10% to the reguler ticket price
+import os
+clear = lambda: os.system('cls')
 
 class Ticket:
     def __init__(self, price, number, ticketType):
@@ -58,55 +57,76 @@ def availableTickets(event):
     
 def showMenu(event):
     print("1: Buy a regular ticket\n2: Buy a student ticket\n3: Buy an advanced ticket\n4: Buy a late ticket\n5: Show my tickets\n6: exit")
-    choice = int(input("Enter an option number:"))
+    try:
+        choice = int(input("Enter an option number:"))
+    except ValueError:
+        print("\nPlease choose a valid option")
+        showMenu(event)
+    
     if choice == 1:
         if(len(event.regularTickets) != 0):
+            clear()
             event.myTickets.append(event.regularTickets[0])
             event.regularTickets.pop(0)
             print("\nThanks for purchasing!\n")
             availableTickets(event)
             showMenu(event)
+            
         else:
+            clear()
             print("Sorry, we`re out of regular tickets\n")
             showMenu(event)
     elif choice == 2:
         if(len(event.studentTickets) != 0):
+            clear()
             event.myTickets.append(event.studentTickets[0])
             event.studentTickets.pop(0)
             print("\nThanks for purchasing!\n")
             availableTickets(event)
             showMenu(event)
         else:
+            clear()
             print("Sorry, we`re out of student tickets\n")
             showMenu(event)
     elif choice == 3:
         if(len(event.advancedTickets) != 0):
+            clear()
             event.myTickets.append(event.advancedTickets[0])
             event.advancedTickets.pop(0)
             print("\nThanks for purchasing!\n")
             availableTickets(event)
             showMenu(event)
         else:
+            clear()
             print("Sorry, we`re out of advanced tickets\n")
             showMenu(event)
     elif choice == 4:
         if(len(event.lateTickets) != 0):
+            clear()
             event.myTickets.append(event.lateTickets[0])
             event.lateTickets.pop(0)
             print("\nThanks for purchasing!\n")
             availableTickets(event)
             showMenu(event)
         else:
+            clear()
             print("Sorry, we`re out of late tickets\n")
             showMenu(event)
     elif choice == 5:
         if (len(event.myTickets) != 0):
+            clear()
             for index in range(len(event.myTickets)):
                 print(f"Ticket type: {event.myTickets[index].ticketType}, Ticket number:{event.myTickets[index].number}")
-        else:
-            print("Sorry, You didn`t buy any, yet")
             showMenu(event)
+        else:
+            clear()
+            print("Sorry, You didn`t buy any, yet.")
+            showMenu(event)
+    elif choice == 6:
+        clear()
+        print("Thank you for using our service!")
     else:
+        clear()
         print("\n\nPlease choose a valid option\n")
         availableTickets(event)
         showMenu(event)
