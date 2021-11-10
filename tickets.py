@@ -55,9 +55,10 @@ def availableTickets(event):
     print(f"Late tickets available: {len(event.lateTickets)}, price: {event.late}")
     
 def showMenu(event):
-    
-while True:
-    event = EventCreator(60, 100)
     availableTickets(event)
-    
+    print("\n1: Buy a regular ticket\n2: Buy a student ticket\n3: Buy an advanced ticket\n4: Buy a late ticket\n5: exit")
+while True:
+    event = EventCreator(50, 100)
+    showMenu(event)
     break
+    
