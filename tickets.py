@@ -3,9 +3,10 @@
 #-late ticket - additional 10% to the reguler ticket price
 
 class Ticket:
-    def __init__(self, price, number):
+    def __init__(self, price, number, ticketType):
         self.price = price
         self.number = number
+        self.ticketType = ticketType
         
 class TicketFactory:
     def __init__(self, basePrice):
@@ -23,21 +24,22 @@ class TicketFactory:
         self.advancedTickets = []
         self.studentTickets = []
         self.lateTickets = []
+        self.myTickets = []
     def generateRegular(self, amount):
         for number in range(amount):
-            self.regularTickets.append(Ticket(self.regular, self.regularNumbers[number]))
+            self.regularTickets.append(Ticket(self.regular, self.regularNumbers[number], "Regular"))
     def generateAdvanced(self, amount):
         for number in range(amount):
-            self.advancedTickets.append(Ticket(self.advanced,  self.advancedNumbers[number]))
+            self.advancedTickets.append(Ticket(self.advanced,  self.advancedNumbers[number], "Advanced"))
     def generateStudent(self, amount):
         for number in range(amount):
-            self.studentTickets.append(Ticket(self.student,  self.studentNumbers[number]))
+            self.studentTickets.append(Ticket(self.student,  self.studentNumbers[number], "Student"))
     def generateLate(self, amount):
         for number in range(amount):
-            self.lateTickets.append(Ticket(self.late, self.lateNumbers[number]))
+            self.lateTickets.append(Ticket(self.late, self.lateNumbers[number], "Late"))
 
 def EventCreator(daysBeforeEvent, regularTickets):
-    event = TicketFactory(60)
+    event = TicketFactory(regularTickets)
     event.generateRegular(regularTickets)
     event.generateStudent(int(regularTickets * 0.3))
     if daysBeforeEvent >= 60:
@@ -49,31 +51,69 @@ def EventCreator(daysBeforeEvent, regularTickets):
     return event
 
 def availableTickets(event):
-    print(f"Regular tickets available: {len(event.regularTickets)}, price: {event.regular}")
-    print(f"Student tickets available: {len(event.studentTickets)}, price: {event.student}")
-    print(f"Advanced tickets available: {len(event.advancedTickets)}, price: {event.advanced}")
-    print(f"Late tickets available: {len(event.lateTickets)}, price: {event.late}\n")
+    print(f"Regular tickets available: {len(event.regularTickets)}, price: {event.regular}$")
+    print(f"Student tickets available: {len(event.studentTickets)}, price: {event.student}$")
+    print(f"Advanced tickets available: {len(event.advancedTickets)}, price: {event.advanced}$")
+    print(f"Late tickets available: {len(event.lateTickets)}, price: {event.late}$\n")
     
 def showMenu(event):
-    print("1: Buy a regular ticket\n2: Buy a student ticket\n3: Buy an advanced ticket\n4: Buy a late ticket\n5: exit")
+    print("1: Buy a regular ticket\n2: Buy a student ticket\n3: Buy an advanced ticket\n4: Buy a late ticket\n5: Show my tickets\n6: exit")
     choice = int(input("Enter an option number:"))
     if choice == 1:
-        event.regularTickets.pop(0)
-        print("\nThanks for purchasing!\n")
+        if(len(event.regularTickets) != 0):
+            event.myTickets.append(event.regularTickets[0])
+            event.regularTickets.pop(0)
+            print("\nThanks for purchasing!\n")
+            availableTickets(event)
+            showMenu(event)
+        else:
+            print("Sorry, we`re out of regular tickets\n")
+            showMenu(event)
+    elif choice == 2:
+        if(len(event.studentTickets) != 0):
+            event.myTickets.append(event.studentTickets[0])
+            event.studentTickets.pop(0)
+            print("\nThanks for purchasing!\n")
+            availableTickets(event)
+            showMenu(event)
+        else:
+            print("Sorry, we`re out of student tickets\n")
+            showMenu(event)
+    elif choice == 3:
+        if(len(event.advancedTickets) != 0):
+            event.myTickets.append(event.advancedTickets[0])
+            event.advancedTickets.pop(0)
+            print("\nThanks for purchasing!\n")
+            availableTickets(event)
+            showMenu(event)
+        else:
+            print("Sorry, we`re out of advanced tickets\n")
+            showMenu(event)
+    elif choice == 4:
+        if(len(event.lateTickets) != 0):
+            event.myTickets.append(event.lateTickets[0])
+            event.lateTickets.pop(0)
+            print("\nThanks for purchasing!\n")
+            availableTickets(event)
+            showMenu(event)
+        else:
+            print("Sorry, we`re out of late tickets\n")
+            showMenu(event)
+    elif choice == 5:
+        if (len(event.myTickets) != 0):
+            for index in range(len(event.myTickets)):
+                print(f"Ticket type: {event.myTickets[index].ticketType}, Ticket number:{event.myTickets[index].number}")
+        else:
+            print("Sorry, You didn`t buy any, yet")
+            showMenu(event)
+    else:
+        print("\n\nPlease choose a valid option\n")
         availableTickets(event)
         showMenu(event)
-    elif choice == 2:
-        pass
-    elif choice == 3:
-        pass
-    elif choice == 4:
-        pass
-    elif choice == 5:
-        pass
-    else:
-        pass
+
+
 while True:
-    event = EventCreator(50, 100)
+    event = EventCreator(60, 10)
     availableTickets(event)
     showMenu(event)
     break
