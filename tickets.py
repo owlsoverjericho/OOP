@@ -49,12 +49,15 @@ def EventCreator(daysBeforeEvent, regularTickets):
     return event
 
 def availableTickets(event):
+    print(f"Regular tickets available: {len(event.regularTickets)}, price: {event.regular}")
+    print(f"Student tickets available: {len(event.studentTickets)}, price: {event.student}")
+    print(f"Advanced tickets available: {len(event.advancedTickets)}, price: {event.advanced}")
+    print(f"Late tickets available: {len(event.lateTickets)}, price: {event.late}")
     
+def showMenu(event):
     
-
 while True:
     event = EventCreator(60, 100)
-    
+    availableTickets(event)
     
     break
-    
