@@ -13,7 +13,7 @@ class Rational:
     def displayFloating(self):
         print(f'{self.__numerator / self.__denominator}');
 
-x = Rational(10,20);
+x = Rational(5,8);
 
 x.displayStandart();
 
