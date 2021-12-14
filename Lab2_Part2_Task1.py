@@ -24,16 +24,16 @@ class Order:
     def showUserInfo(self):
         print(f"Client`s name: {self.user.name}\nClient's phone number: {self.user.phone_number}")
         
-user1488 = Client('John', 'Smith', 'Smithovich', '+380671240791');
+user14 = Client('John', 'Smith', 'Smithovich', '+380671240791');
 
-item1488 = Product(1500, "GTX 1080Ti", "Graphics card", "100x100x100");
+item101 = Product(1500, "GTX 1080Ti", "Graphics card", "100x100x100");
 
-item1489 = Product(499, "GTX 750", "GPU", "50x50x50");
+item102 = Product(499, "GTX 750", "GPU", "50x50x50");
 
 ShoppingCart = Order();
 
-ShoppingCart.getClientInfo(user1488);
-ShoppingCart.addItem(item1488);
-ShoppingCart.addItem(item1489);
+ShoppingCart.getClientInfo(user14);
+ShoppingCart.addItem(item101);
+ShoppingCart.addItem(item102);
 ShoppingCart.showOrderList();
 ShoppingCart.showUserInfo();
